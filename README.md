@@ -1,4 +1,6 @@
 # Ryanair Flights
 
 ## **To-do** 🏆
-* [ ] make project flexible (now it is set to search flight between Katowice and Venice)
+* [ ] refactor code to enable program flexibility
+* [ ] add note about --options
+* [ ] add --help
