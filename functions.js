@@ -1,15 +1,9 @@
 import colors from "colors";
-import {options} from "./variables.js"
-
-
-export const show = (x, Function=null) => console.log(Function ?  Function(x) : x);
-
+const options = ["--url", "--invalid", "--object"];
 
 export const pickColorFunction = (isValid) => isValid ? colors.green : colors.red;
 
-
-export const config = (argv) => options.map(x => argv.includes(x)); 
-
+export const config = (argv) => options.map(x => argv.includes(x));
 
 export const makeUrl = (date) => {
     const {date_there, date_back, from, to} = date;
@@ -21,9 +15,26 @@ export const makeUrl = (date) => {
     return `${urlFirstPart}&dateOut=${date_there}&dateIn=${date_back}${urlMidPart}&tpStartDate=${date_there}&tpEndDate=${date_back}${urlLastPart}`;
 }
 
-
 export const flightInfo = (date) => {
     const {date_there, date_back, price_back, price_there, from, to} = date;
     return `\n\t${from} - ${to}\n\tWylot: ${date_there}\n\tPrzylot: ${date_back}\n\tSuma: ${price_there + price_back} [${price_there}, ${price_back}]`
 }
 
+export const print = (showUrl, showInValid, OnlyDateObject, date, url) => {
+    const isDateValid = date.price_there && date.price_back;
+    if(!showInValid && !(isDateValid)){
+        show(`\n--Invalid result [ ${date.date_there} - ${date.date_back}]`, pickColorFunction(isDateValid));
+    }
+    else if(OnlyDateObject) {
+        if(showUrl)
+           show("\n" + url);
+        show(date, pickColorFunction(isDateValid));
+    }
+    else {
+        if(showUrl)
+            show("\n" + url);
+        show(flightInfo(date), pickColorFunction(isDateValid))
+    }
+}
+
+export const show = (x, Function=null) => console.log(Function ?  Function(x) : x);
