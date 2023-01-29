@@ -5,7 +5,7 @@ git clone https://github.com/sebastian-sobik/Ryanair-Flights.git
 npm install
 ```
 ### 2. Inserting your flight data
-Add your flight representing javascript object to **flights-data.js**.
+Add your flight representing javascript object to array in **flights-data.js**.
 Structure of flight object: 
 ```bash
  {
@@ -15,7 +15,7 @@ Structure of flight object:
             to : "IATA-Airport-Code"
  }
 ```
-IATA-Airport-Code can be found here: [a link](https://www.iata.org/en/publications/directories/code-search/#:~:text=Search%20Location%20Codes-,Search,-SEARCH%20NOW) 
+**IATA-Airport-Code** can be found here: [a link](https://www.iata.org/en/publications/directories/code-search/#:~:text=Search%20Location%20Codes-,Search,-SEARCH%20NOW) 
 
 ### 3. Running app options
 #### Standard way: 
