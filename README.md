@@ -1,3 +1,5 @@
+<img src="screenshot.png" alt="Program result" title="Program result" height="400px">
+
 ## How to use
 ### 1. Installation
 ```bash
