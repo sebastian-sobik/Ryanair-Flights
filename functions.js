@@ -15,12 +15,12 @@ export const makeUrl = (date) => {
     return `${urlFirstPart}&dateOut=${date_there}&dateIn=${date_back}${urlMidPart}&tpStartDate=${date_there}&tpEndDate=${date_back}${urlLastPart}`;
 }
 
-export const flightInfo = (date) => {
+export const flightInfo = (date, time_there, time_back) => {
     const {date_there, date_back, price_back, price_there, from, to} = date;
-    return `\n\t${from} - ${to}\n\tWylot: ${date_there}\n\tPrzylot: ${date_back}\n\tSuma: ${price_there + price_back} [${price_there}, ${price_back}]`
+    return `\n\t${from} - ${to}\n\tWylot: ${date_there}, ${time_there}\n\tPrzylot: ${date_back}, ${time_back}\n\tSuma: ${price_there + price_back} [${price_there}, ${price_back}]`
 }
 
-export const print = (showUrl, showInValid, OnlyDateObject, date, url) => {
+export const print = (showUrl, showInValid, OnlyDateObject, date, url, time_there, time_back) => {
     const isDateValid = date.price_there && date.price_back;
     if(!showInValid && !(isDateValid)){
         show(`\n--Invalid result [ ${date.date_there} - ${date.date_back}]`, pickColorFunction(isDateValid));
@@ -33,7 +33,7 @@ export const print = (showUrl, showInValid, OnlyDateObject, date, url) => {
     else {
         if(showUrl)
             show("\n" + url);
-        show(flightInfo(date), pickColorFunction(isDateValid))
+        show(flightInfo(date, time_there, time_back), pickColorFunction(isDateValid))
     }
 }
 

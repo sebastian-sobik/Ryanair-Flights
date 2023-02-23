@@ -26,7 +26,18 @@ const start = async () => {
             });
         });
 
-        f.print(showUrl, showInValid, onlyDateObject, date, url);
+
+        const [time_there, time_back] = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll("journey")).map(el => {
+                times = el.querySelectorAll("flight-list .time span");
+                if(times)
+                    return `${times[0].innerText} - ${times[2].innerText}`;
+                else
+                    return null;
+            });
+        });
+
+        f.print(showUrl, showInValid, onlyDateObject, date, url, time_there, time_back);
     }
 
     await browser.close();
